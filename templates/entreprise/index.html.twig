@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="alert alert-info">
+        Nombre de pfe par entreprise
+    </div>
+    <div class="row">
+        {% for entreprise in entreprises   %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ entreprise.designation }}</h5>
+                   {#<p class="card-text">{{ count.nombrePfe }}</p> #}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}
+
+{% block title %}
+    personnes
+{% endblock %}
+
