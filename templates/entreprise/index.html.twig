@@ -1,18 +1,29 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
+    <div class="container">
     <div class="alert alert-info">
         Nombre de pfe par entreprise
     </div>
     <div class="row">
         {% for entreprise in entreprises   %}
-            <div class="card" style="width: 18rem;">
+            {% if loop.index is odd  %}
+            <div class="card " style="width: 18rem;background-color:olive;">
                 <div class="card-body">
                     <h5 class="card-title">{{ entreprise.designation }}</h5>
-                   {#<p class="card-text">{{ count.nombrePfe }}</p> #}
+                   <p class="card-text">pfe : {{ entreprise.pfe|length }}</p>
                 </div>
             </div>
+        {% else %}
+            <div class="card active-danger" style="width: 18rem;background-color:rosybrown; ">
+                <div class="card-body">
+                    <h5 class="card-title">{{ entreprise.designation }}</h5>
+                    <p class="card-text">pfe : {{ entreprise.pfe|length }}</p>
+                </div>
+            </div>
+            {% endif %}
         {% endfor %}
+    </div>
     </div>
 
 

@@ -14,6 +14,13 @@ class Entreprise extends Fixture
         for($i=0;$i<100;$i++){
             $Entreprise =new \App\Entity\Entreprise();
             $Entreprise->setDesignation($faker->company );
+            $Pfe =new \App\Entity\Pfe();
+            $Pfe->setTitle($faker->title);
+            $Pfe->setStudent($faker->name);
+            $Pfe->setEntreprise($Entreprise);
+
+
+            $manager->persist($Pfe);
 
             $manager->persist($Entreprise);
 

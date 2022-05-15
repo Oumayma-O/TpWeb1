@@ -30,6 +30,7 @@ class PfeController extends AbstractController
 
             $manager=$doctrine->getManager();
             $manager->persist($Pfe);
+            $manager->flush();
 
             $this->addFlash($Pfe->getTitle(),"a ete ajouté");
 
@@ -40,7 +41,7 @@ class PfeController extends AbstractController
             ]);
 
         }else{
-            return $this->render("pfe/add-pfe.html.twig",['form'=>$form->createView()]);
+            return $this->render("pfe/add_pfe.html.twig",['form'=>$form->createView()]);
 
         }
 
