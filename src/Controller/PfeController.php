@@ -35,20 +35,18 @@ class PfeController extends AbstractController
             $this->addFlash($Pfe->getTitle(),"a ete ajouté");
 
 
-            //dd($form->getData());//$personne
-            return $this->render('pfe/detail-pfe.html.twig', [
-                'form'=>$form->createView(),
-            ]);
+
+            $repo = $doctrine->getRepository(Pfe::class);
+            $allPFE = $repo->findBy([],['title'=>'ASC']);
+
+            return $this->render('pfe/index.html.twig', [
+                'listePFE' => $allPFE]);
 
         }else{
             return $this->render("pfe/add_pfe.html.twig",['form'=>$form->createView()]);
 
         }
 
-
-        /*return $this->render('personne/add-personne.html.twig', [
-            'form'=>$form->createView(),
-            ]);*/
     }
 
 

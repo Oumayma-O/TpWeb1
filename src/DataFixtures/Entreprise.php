@@ -15,7 +15,7 @@ class Entreprise extends Fixture
             $Entreprise =new \App\Entity\Entreprise();
             $Entreprise->setDesignation($faker->company );
             $Pfe =new \App\Entity\Pfe();
-            $Pfe->setTitle($faker->title);
+            $Pfe->setTitle($faker->colorName);
             $Pfe->setStudent($faker->name);
             $Pfe->setEntreprise($Entreprise);
 

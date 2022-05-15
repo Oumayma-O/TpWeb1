@@ -13,13 +13,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EntrepriseController extends AbstractController
 {
-    #[Route('/entreprise', name: 'app_entreprise')]
-    public function index(ManagerRegistry $doctrine): Response
+    #[Route('/entreprise/{page<\d+>?1}/{nbre<\d+>?10}', name: 'app_entreprise')]
+    public function index(ManagerRegistry $doctrine,$page,$nbre): Response
     {
         $repository=$doctrine->getRepository(Entreprise::class);
-        $Entreprises=$repository->findAll();
+        $Entreprises=$repository->findBy([],['designation'=>'ASC'],limit:$nbre ,offset: $nbre*($page-1));
+        $nbreEntreprise = $repository->count([]);
+        $nbrePage=ceil($nbreEntreprise / $nbre);
         return $this->render('entreprise/index.html.twig', [
-            'entreprises'=>$Entreprises,
+            'entreprises'=>$Entreprises,'nbre'=>$nbre,'page'=>$page,'nbrePages'=>$nbrePage
         ]);
     }
+
+
+
+
+
+
 }

@@ -8,14 +8,14 @@
     <div class="row">
         {% for entreprise in entreprises   %}
             {% if loop.index is odd  %}
-            <div class="card " style="width: 18rem;background-color:olive;">
+            <div class="card text-white bg-primary m-2 col-3">
                 <div class="card-body">
-                    <h5 class="card-title">{{ entreprise.designation }}</h5>
+                    <h5 class="card-header">{{ entreprise.designation }}</h5>
                    <p class="card-text">pfe : {{ entreprise.pfe|length }}</p>
                 </div>
             </div>
         {% else %}
-            <div class="card active-danger" style="width: 18rem;background-color:rosybrown; ">
+            <div class="card text-white bg-success m-2 col-3 ">
                 <div class="card-body">
                     <h5 class="card-title">{{ entreprise.designation }}</h5>
                     <p class="card-text">pfe : {{ entreprise.pfe|length }}</p>
@@ -24,6 +24,19 @@
             {% endif %}
         {% endfor %}
     </div>
+
+        <div class="container">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="{{path('app_entreprise',{page:page -1 , nbre: nbre}) }}">Previous</a></li>
+                    {% for i in range(1,nbrePages) %}
+                        <li class="page-item"><a class="page-link" href="{{ path('app_entreprise',{page:i , nbre: nbre}) }}">{{ i }}</a></li>
+                    {% endfor %}
+                    <li class="page-item"><a class="page-link" href="{{path('app_entreprise',{page:page + 1 , nbre: nbre}) }}">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+
     </div>
 
 
